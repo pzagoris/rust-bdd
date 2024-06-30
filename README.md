@@ -17,7 +17,7 @@ In the 3 yaml files are stored test environment related parameters. Defining the
 After defining the above variables you can execute the tests locally by running:
 
 ```
-cargo test
+cargo test --test test_runner
 ```
 
 ## Docker Build
@@ -34,4 +34,12 @@ For executing the tests inside the container run the command
 
 ```
 docker run --rm api-test
+```
+
+## Documentation
+
+You can generate the Documentation by running the command
+
+```
+cargo doc --open
 ```

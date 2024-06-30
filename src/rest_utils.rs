@@ -1,3 +1,9 @@
+//! # Rest utilities module
+//!
+//! It is a collection of utility functions to assist in making HTTP requests using the reqwest library. 
+//! It includes functions for creating and configuring requests, parsing HTTP methods, generating payloads with nonce values, 
+//! building URLs, and parsing query strings.
+
 use crate::auth::generate_nonce_value;
 use crate::config::get_config_value;
 use reqwest::{Body, Client, Method, Request};
@@ -45,48 +51,6 @@ pub fn create_request(
     request_builder.build().map_err(|e| e.to_string())
 }
 
-/*
-/// Creates a `reqwest::Request` instance based on provided parameters.
-pub fn create_request(
-    client: &Client,
-    method: Method,
-    url: &str,
-    headers: Option<HashMap<&str, &str>>,
-    query_params: Option<HashMap<&str, &str>>,
-    payload: Option<HashMap<&str, &str>>,
-) -> Result<Request, String> {
-    let mut request_builder = client.request(method.clone(), url);
-
-    // Set headers
-    if let Some(headers) = headers {
-        for (key, value) in headers {
-            request_builder = request_builder.header(key, value);
-        }
-    }
-
-    // Set query parameters if provided
-    if let Some(query_params) = query_params {
-        request_builder = request_builder.query(&query_params);
-    }
-
-    // Set payload (form data) if provided, for POST requests
-    if method == Method::POST || method == Method::PUT {
-        if let Some(payload) = payload {
-            // Serialize form data
-            let form_data = serde_urlencoded::to_string(payload)
-                .map_err(|e| format!("Failed to serialize form data: {}", e))?;
-
-            // Convert form_data into a reqwest::Body
-            let body: Body = form_data.into(); // Specify the type here
-
-            // Set the body of the request
-            request_builder = request_builder.body(body);
-        }
-    }
-
-    // Build and return the Request
-    request_builder.build().map_err(|e| e.to_string())
-}*/
 
 /// Helper function to identify the HTTP Method type.
 pub fn parse_method(method_str: &str) -> Result<Method, String> {
@@ -104,6 +68,7 @@ pub fn parse_method(method_str: &str) -> Result<Method, String> {
     }
 }
 
+/// Creates payload with nonce.
 pub fn create_nonce_payload() -> HashMap<String, String> {
     let nonce = generate_nonce_value();
     // Create signature payload
@@ -112,7 +77,7 @@ pub fn create_nonce_payload() -> HashMap<String, String> {
     nonce_payload
 }
 
-/// Helper function to build URL from path.
+/// Build URL from path.
 pub fn build_url(path: &str) -> Result<String, String> {
     let mut url = get_config_value("api_url").map_err(|e| e.to_string())?;
     let path_value = get_config_value(path).map_err(|e| e.to_string())?;
@@ -134,6 +99,7 @@ pub fn parse_query_parameters(query_string: &str) -> Result<HashMap<&str, &str>,
     Ok(map)
 }
 
+// Helper function that is used by parse_query_parameters function
 fn split_pair(pair: &str) -> Option<(&str, &str)> {
     if let Some(idx) = pair.find('=') {
         let (key, value) = pair.split_at(idx);

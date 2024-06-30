@@ -1,3 +1,9 @@
+//! # Authorization module
+//!
+//! Contains functionality related to the authorization.
+//!
+//! Important note: The two-factor authentication (2FA) is not implemented.
+
 use base64::engine::general_purpose;
 use base64::engine::general_purpose::STANDARD;
 use base64::Engine;
