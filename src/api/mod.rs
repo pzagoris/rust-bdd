@@ -1,10 +1,16 @@
+//! # API module
+//!
+//! This module provides the core object that stores the testing state(context).
+//! Includes also a submodule that exposes several structs for the desereliazation
+//! of the API requests.
+
 use serde_json::Value;
 use std::sync::Arc;
 use tokio::sync::Mutex;
 
 pub mod responses;
 
-/// World struct for storing API testing state.
+/// Stores the testing state.
 #[derive(Debug, Default, cucumber::World)]
 pub struct ApiWorld {
     /// Shared HTTP client instance wrapped in an `Arc`.
@@ -19,7 +25,7 @@ pub struct ApiWorld {
     pub signature: Arc<Mutex<String>>,
 }
 
-/// Helper function to update the world object with response details.
+/// Function to update the testing state according to the response details.
 pub async fn update_world_with_response(
     world: &mut ApiWorld,
     response: reqwest::Response,

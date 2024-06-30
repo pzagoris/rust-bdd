@@ -1,3 +1,7 @@
+//! # Config module (test environment variables)
+//!
+//! This module provides functionality for loading the test environment variables in a HashMap (`CONFIG_MAP`) that can be shared with all the tests.
+//!
 use once_cell::sync::Lazy;
 use std::collections::HashMap;
 use std::fmt;
@@ -5,16 +9,15 @@ use std::fs;
 
 use serde_yaml;
 
-/// Here ere stored the test-environment related parameters.
-/// Those are saved in a yaml file.
-/// The name of this file is set a environment parameter `ENV_EXECUTION`.
-/// We can have several such configuration yaml files likes,
-/// one fore ach environment (dev, test, pre-prod, prod)
+/// Here are stored the test-environment related parameters.
+/// Those are saved in a yaml file (in the root folders).
+/// The name of this file is set as environment parameter `ENV_EXECUTION`.
+/// We can have several such configuration(yaml) files likes. One for each environment (dev, test, pre-prod, prod).
 pub static CONFIG_MAP: Lazy<ConfigMap> = Lazy::new(initialize_config_map);
 
 pub type ConfigMap = HashMap<String, String>;
 
-// Function to initialize the HashMap from YAML file
+/// Function to initialize the HashMap from YAML file.
 pub fn initialize_config_map() -> ConfigMap {
     let config_file_path =
         std::env::var("ENV_EXECUTION").expect("ENV_EXECUTION variable needs to be set");
@@ -41,7 +44,7 @@ impl fmt::Display for ConfigError {
 
 impl std::error::Error for ConfigError {}
 
-// Function to retrieve a value from CONFIG_MAP based on key
+/// Function to retrieve a value from CONFIG_MAP based on key.
 pub fn get_config_value(key: &str) -> Result<String, ConfigError> {
     CONFIG_MAP
         .get(key)

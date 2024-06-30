@@ -1,4 +1,4 @@
-/// Represents a trading asset pair.
+/// The expected trading asset pair response.
 #[derive(Debug, serde::Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct AssetPair {

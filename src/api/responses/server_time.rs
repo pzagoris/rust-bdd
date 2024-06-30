@@ -1,4 +1,4 @@
-/// The response from the Server Time
+/// The expected Server Time response.
 #[derive(Debug, serde::Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct ServerTime {

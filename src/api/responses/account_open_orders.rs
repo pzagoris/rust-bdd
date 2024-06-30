@@ -1,5 +1,6 @@
 use std::collections::HashMap;
-/** The response from the Account Open Orders
+/// The expected respose from the Account Open Orders.
+/*
  *
  *  Instead of structs for deserialization, we can handle the response as a
  *  string or json value (anad use jsonpath for checking for specific values.

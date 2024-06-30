@@ -17,7 +17,7 @@ In the 3 yaml files are stored test environment related parameters. Defining the
 After defining the above variables you can execute the tests locally by running:
 
 ```
-cargo test
+cargo test --test test_runner
 ```
 
 ## Docker Build
