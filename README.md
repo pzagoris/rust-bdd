@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-Define the following environment variables in the Dockerfile.
+Define the following environment variables (either locally or during docker build).
 
 ```
 ENV ENV_EXECUTION= [config-prod.yaml| config-test.yaml | config-dev.yaml]
