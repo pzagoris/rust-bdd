@@ -1,0 +1,5 @@
+# test environment variable for test.
+api_url  : "https://api.kraken.com/"
+server_time_path : "/0/public/Time"
+assetpairs_path :  "/0/public/AssetPairs"
+openorders_path :  "/0/private/OpenOrders"
