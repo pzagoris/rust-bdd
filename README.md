@@ -22,7 +22,7 @@ cargo test
 
 ## Docker Build
 
-In order to build the docker file, and produce the container image,  run the command
+In order to build the docker file and produce the container image,  run the command
 
 ```
 docker build  --build-arg ENV_EXECUTION=[ENV_EXECUTION]  --build-arg API_KEY=[API_KEY]  --build-arg API_SECRET=[API_SECRET]  -t api-test .
