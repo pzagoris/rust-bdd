@@ -35,3 +35,11 @@ For executing the tests inside the container run the command
 ```
 docker run --rm api-test
 ```
+
+## Documentation
+
+You can generate the Documentation by running the command
+
+```
+cargo doc --open
+```
