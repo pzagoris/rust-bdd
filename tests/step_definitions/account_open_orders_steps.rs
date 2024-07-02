@@ -12,6 +12,9 @@ use std::collections::HashMap;
 
 #[given(expr = "POST request to retrieve account open orders")]
 async fn get_account_open_orders(world: &mut ApiWorld) -> Result<(), String> {
+    //the following part needs refactoring
+    // by creating a reusable function.
+
     // Fetch API key and other configuration values
     let api_key = std::env::var("API_KEY").map_err(|e| format!("Failed to get API_KEY: {}", e))?;
     let api_url =
