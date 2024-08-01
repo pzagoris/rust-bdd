@@ -40,6 +40,10 @@ docker run --rm api-test
 
 You can generate the Documentation by running the command
 
+## TBD
+
+Remove reqwest-client from the ApiWorld struct.
+
 ```
 cargo doc --open
 ```
